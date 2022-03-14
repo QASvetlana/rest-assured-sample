@@ -24,8 +24,18 @@ public class ReqresTests {
                 .post("/api/users")
                 .then()
                 .statusCode(201)
-                .body("name",is("morpheus"));
+                .body("name", is("morpheus"));
 
     }
 
+    @Test
+    void singleResourceNotFound() {
+        given()
+                .when()
+                .get("/api/unknown/23")
+                .then()
+                .statusCode(404)
+                .body(is("{}"));
+
+    }
 }
